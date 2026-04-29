@@ -3,147 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growvix - Admin Dashboard</title>
+    <title>Growvix - Admin Control Center</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #f9fafb; padding-bottom: 40px; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f7f9fc; padding-bottom: 40px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+        .active-tab { background-color: #ff0000; color: white; }
     </style>
 </head>
 <body class="max-w-4xl mx-auto text-gray-900">
 
-    <header class="p-6 flex items-center justify-between sticky top-0 bg-white/80 backdrop-blur-md z-40 border-b border-gray-100">
+    <!-- Top Navigation -->
+    <header class="p-6 flex items-center justify-between sticky top-0 bg-white/90 backdrop-blur-md z-40 border-b border-gray-100 mb-6">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100">
-                <img src="https://i.ibb.co/CcxW3F4/file-0000000054487208abbf2cb1db170f4e.png" alt="Logo" class="w-full h-full object-cover">
+            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-xl border border-gray-50 p-1">
+                <img src="https://i.ibb.co/CcxW3F4/file-0000000054487208abbf2cb1db170f4e.png" alt="Logo" class="w-full h-full object-contain">
             </div>
             <div>
-                <h1 class="text-xl font-black text-gray-800 tracking-tight">Admin</h1>
-                <p class="text-[8px] text-gray-400 font-bold uppercase tracking-widest">Growvix Management</p>
+                <h1 class="text-xl font-black text-gray-900 tracking-tight leading-none">Control Center</h1>
+                <p class="text-[9px] text-[#ff0000] font-black uppercase tracking-widest mt-1">Growvix Admin Panel</p>
             </div>
         </div>
         
         <div class="flex items-center gap-2">
-            <a href="index.html" class="p-2.5 bg-white rounded-xl text-gray-400 hover:text-[#ff0000] shadow-sm border border-gray-50">
+            <a href="index.html" class="p-2.5 bg-white rounded-xl text-gray-400 hover:text-[#ff0000] shadow-sm border border-gray-50 transition-all active:scale-95">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </a>
-            <div class="relative">
-                <button onclick="toggleMenu()" class="p-2.5 bg-white rounded-xl text-gray-400 shadow-sm border border-gray-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-                </button>
-                <div id="admin-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-2xl border border-gray-100 z-50 overflow-hidden">
-                    <div class="p-2 space-y-1">
-                        <button onclick="switchTab('overview')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-50">Overview</button>
-                        <button onclick="switchTab('requests')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-50">Requests</button>
-                        <button onclick="switchTab('users')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-50">Users</button>
-                        <button onclick="switchTab('settings')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-50">Settings</button>
-                        <a href="admin-add-plan.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-50">Add Plan</a>
-                    </div>
-                </div>
-            </div>
+            <button onclick="logout()" class="p-2.5 bg-red-50 rounded-xl text-[#ff0000] shadow-sm border border-red-100 transition-all active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            </button>
         </div>
     </header>
 
-    <main class="p-4 space-y-6">
+    <!-- Side/Top Navigation Tabs -->
+    <div class="px-4 overflow-x-auto no-scrollbar scroll-smooth flex items-center gap-2 mb-6 pb-2">
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn active-tab whitespace-nowrap px-6 py-3 rounded-2xl text-xs font-bold shadow-sm flex items-center gap-2 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+            Dashboard
+        </button>
+        <button onclick="switchTab('recharges')" id="tab-recharges" class="tab-btn bg-white text-gray-500 whitespace-nowrap px-6 py-3 rounded-2xl text-xs font-bold shadow-sm border border-gray-100 flex items-center gap-2 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Recharges
+        </button>
+        <button onclick="switchTab('withdrawals')" id="tab-withdrawals" class="tab-btn bg-white text-gray-500 whitespace-nowrap px-6 py-3 rounded-2xl text-xs font-bold shadow-sm border border-gray-100 flex items-center gap-2 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            Withdrawals
+        </button>
+        <button onclick="switchTab('users')" id="tab-users" class="tab-btn bg-white text-gray-500 whitespace-nowrap px-6 py-3 rounded-2xl text-xs font-bold shadow-sm border border-gray-100 flex items-center gap-2 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Users
+        </button>
+        <button onclick="switchTab('plans')" id="tab-plans" class="tab-btn bg-white text-gray-500 whitespace-nowrap px-6 py-3 rounded-2xl text-xs font-bold shadow-sm border border-gray-100 flex items-center gap-2 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+            Plans
+        </button>
+        <button onclick="switchTab('coupons')" id="tab-coupons" class="tab-btn bg-white text-gray-500 whitespace-nowrap px-6 py-3 rounded-2xl text-xs font-bold shadow-sm border border-gray-100 flex items-center gap-2 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 9V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3"/><path d="M21 15v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3"/><path d="M3 12h18"/><path d="M3 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3"/><path d="M21 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3"/></svg>
+            Coupons
+        </button>
+        <button onclick="switchTab('settings')" id="tab-settings" class="tab-btn bg-white text-gray-500 whitespace-nowrap px-6 py-3 rounded-2xl text-xs font-bold shadow-sm border border-gray-100 flex items-center gap-2 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            Settings
+        </button>
+    </div>
 
-        <!-- Overview Tab -->
-        <div id="overview" class="tab-content active space-y-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white p-4 rounded-[25px] shadow-sm border border-gray-50 flex flex-col items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    <p class="text-lg font-black text-gray-800">1,248</p>
-                    <p class="text-[10px] text-gray-400 font-bold uppercase">Total Users</p>
+    <main class="px-4 pb-20">
+
+        <!-- DASHBOARD TAB -->
+        <div id="content-dashboard" class="tab-content active space-y-6">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-[25px] shadow-sm border border-gray-50 space-y-3">
+                    <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-tighter">Total Users</p>
+                        <h3 class="text-2xl font-black text-gray-900" id="stat-total-users">0</h3>
+                    </div>
                 </div>
-                <div class="bg-white p-4 rounded-[25px] shadow-sm border border-gray-50 flex flex-col items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-500"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                    <p class="text-lg font-black text-gray-800">15</p>
-                    <p class="text-[10px] text-gray-400 font-bold uppercase">Pending Req.</p>
+                <div class="bg-white p-5 rounded-[25px] shadow-sm border border-gray-50 space-y-3">
+                    <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-green-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-tighter">Total Deposits</p>
+                        <h3 class="text-2xl font-black text-gray-900 leading-none">₹<span id="stat-total-deposits">0</span></h3>
+                    </div>
                 </div>
-                <!-- ... more cards ... -->
+                <div class="bg-white p-5 rounded-[25px] shadow-sm border border-gray-50 space-y-3">
+                    <div class="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center text-[#ff0000]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-tighter">Total Withdrawals</p>
+                        <h3 class="text-2xl font-black text-gray-900 leading-none">₹<span id="stat-total-withdrawals">0</span></h3>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-[25px] shadow-sm border border-gray-50 space-y-3 border-2 border-orange-100">
+                    <div class="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center text-orange-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-tighter">Pending Tasks</p>
+                        <h3 class="text-2xl font-black text-gray-900" id="stat-pending-tasks">0</h3>
+                    </div>
+                </div>
             </div>
-            
-            <div class="bg-white p-6 rounded-[30px] shadow-sm border border-gray-50 space-y-4">
-                <h3 class="text-sm font-black text-gray-800 uppercase tracking-widest">System Status</h3>
-                <div class="p-4 bg-green-50 text-green-700 rounded-2xl border border-green-100 flex items-center gap-3">
-                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <p class="text-xs font-bold uppercase">Server Online</p>
+
+            <!-- Quick Actions -->
+            <div class="bg-white p-6 rounded-[30px] border border-gray-100 shadow-sm space-y-6">
+                <h2 class="text-lg font-black text-gray-800 tracking-tight">Quick Insights</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest pl-1">Server Status</p>
+                        <div class="bg-gray-50 rounded-3xl p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="relative flex h-3 w-3">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                                </span>
+                                <span class="text-xs font-bold text-gray-600">Growvix Cloud Online</span>
+                            </div>
+                            <span class="text-[10px] font-black text-gray-300">99.9% UP</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest pl-1">Security Audit</p>
+                        <div class="bg-gray-50 rounded-3xl p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                <span class="text-xs font-bold text-gray-600">Encrypted Transactions</span>
+                            </div>
+                            <span class="text-[10px] font-black text-gray-300 font-mono tracking-tighter">VERIFIED</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Requests Tab -->
-        <div id="requests" class="tab-content space-y-4">
-            <div class="flex items-center justify-between">
-                <h2 class="text-xl font-black text-gray-800">Pending Requests</h2>
-                <div class="flex bg-gray-100 p-1 rounded-lg">
-                    <button class="px-3 py-1.5 text-[10px] font-black uppercase tracking-wider rounded-md bg-white text-green-600 shadow-sm">Recharges</button>
-                    <button class="px-3 py-1.5 text-[10px] font-black uppercase tracking-wider rounded-md text-gray-400">Withdraws</button>
+        <!-- RECHARGES TAB -->
+        <div id="content-recharges" class="tab-content space-y-4">
+            <div class="flex items-center justify-between pt-2">
+                <h2 class="text-2xl font-black text-gray-900 tracking-tight">Recharge Approval</h2>
+                <div class="px-4 py-2 bg-green-50 text-green-600 rounded-xl text-[10px] font-black uppercase tracking-widest border border-green-100">
+                    Pending Only
                 </div>
             </div>
-
-            <div class="space-y-4">
-                <div class="bg-white p-4 rounded-2xl border border-gray-100 space-y-4 shadow-sm">
+            
+            <div id="recharge-list" class="space-y-4">
+                <!-- Example Pending Recharge -->
+                <div class="bg-white p-5 rounded-[30px] border border-gray-100 shadow-sm space-y-4">
                     <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-green-50 text-green-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/><circle cx="12" cy="12" r="10"/></svg>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                             </div>
                             <div>
-                                <p class="text-sm font-bold text-gray-800">₹2,000.00</p>
-                                <p class="text-[10px] text-gray-400 font-medium">987****210</p>
+                                <h3 class="text-lg font-black text-gray-800">₹2,500.00</h3>
+                                <p class="text-xs font-bold text-gray-400">9876543210 • 12:45 PM</p>
                             </div>
                         </div>
                         <div class="text-right">
-                            <p class="text-[10px] text-gray-400 font-bold uppercase">UPI</p>
-                            <p class="text-[10px] font-bold text-red-500">UTR: 382910482910</p>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase mb-1">UTR Number</p>
+                            <span class="text-xs font-bold text-[#ff0000] bg-red-50 px-3 py-1 rounded-lg">381048291048</span>
                         </div>
                     </div>
-                    <div class="flex gap-3 pt-2">
-                        <button class="flex-1 bg-green-500 text-white py-2 rounded-xl text-xs font-bold">Approve</button>
-                        <button class="flex-1 bg-red-500 text-white py-2 rounded-xl text-xs font-bold">Reject</button>
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <button class="bg-green-500 text-white py-3.5 rounded-2xl text-xs font-black shadow-lg shadow-green-200 transition-all active:scale-95">APPROVE</button>
+                        <button class="bg-gray-100 text-gray-400 py-3.5 rounded-2xl text-xs font-black transition-all active:scale-95">REJECT</button>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center py-20 text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-4"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h9"/><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="m18 21 4-4"/><path d="m18 17 4 4"/></svg>
+                    <p class="text-sm font-bold uppercase tracking-widest">No more pending recharges</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- WITHDRAWALS TAB -->
+        <div id="content-withdrawals" class="tab-content space-y-4">
+            <div class="flex items-center justify-between pt-2">
+                <h2 class="text-2xl font-black text-gray-900 tracking-tight">Withdraw Requests</h2>
+                <button class="text-[10px] font-black text-[#ff0000] uppercase tracking-widest px-4 py-2 bg-red-50 rounded-xl">Clear All</button>
+            </div>
+
+            <div id="withdraw-list" class="space-y-4">
+                <div class="bg-white p-6 rounded-[30px] border border-gray-100 shadow-sm space-y-5">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center text-[#ff0000]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-black text-gray-800">₹850.20</h3>
+                                <p class="text-xs font-bold text-gray-400">7098412354 • 2 mins ago</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[9px] text-gray-400 font-black uppercase tracking-widest mb-1">Method</p>
+                            <p class="text-xs font-black text-blue-500 uppercase">BANK TRANSFER</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-2xl p-4 space-y-2">
+                        <div class="flex justify-between text-xs font-bold">
+                            <span class="text-gray-400 uppercase tracking-tighter">Acc Name</span>
+                            <span class="text-gray-700">VIKRAM SINGH</span>
+                        </div>
+                        <div class="flex justify-between text-xs font-bold">
+                            <span class="text-gray-400 uppercase tracking-tighter">Acc No</span>
+                            <span class="text-gray-700">38290119283</span>
+                        </div>
+                        <div class="flex justify-between text-xs font-bold">
+                            <span class="text-gray-400 uppercase tracking-tighter">IFSC Code</span>
+                            <span class="text-gray-700">SBIN0001234</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="bg-[#ff0000] text-white py-3.5 rounded-2xl text-xs font-black shadow-lg shadow-red-200 transition-all active:scale-95">MARK PAID</button>
+                        <button class="bg-gray-100 text-gray-400 py-3.5 rounded-2xl text-xs font-black active:scale-95">CANCEL</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Users Tab -->
-        <div id="users" class="tab-content space-y-4">
-             <div class="relative">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <input type="text" placeholder="Search by phone..." class="w-full bg-white border border-gray-100 rounded-2xl py-3 pl-12 pr-4 outline-none font-bold text-gray-700">
+        <!-- USERS TAB -->
+        <div id="content-users" class="tab-content space-y-6">
+            <div class="space-y-4">
+                <div class="relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-5 top-1/2 -translate-y-1/2 text-gray-300"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="text" placeholder="Search by phone or email..." class="w-full bg-white border border-gray-100 rounded-[25px] py-4 pl-14 pr-6 outline-none font-bold text-gray-700 shadow-sm focus:border-[#ff0000] transition-all">
+                </div>
             </div>
-            <!-- ... list of users ... -->
-            <div class="bg-white p-4 rounded-2xl border border-gray-100 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin" class="w-10 h-10 rounded-full bg-gray-50">
-                    <div>
-                        <p class="text-sm font-black">9876543210</p>
-                        <p class="text-[10px] text-gray-400">admin@growvix.com</p>
+
+            <div class="space-y-3" id="users-list">
+                <!-- User Entry -->
+                <div class="bg-white p-4 rounded-[25px] border border-gray-100 shadow-sm flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-50 flex items-center justify-center bg-gray-50">
+                            <span class="text-sm font-black text-gray-300">VS</span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-black text-gray-900 leading-none mb-1">9876543210</h4>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Bal: ₹25,480.00</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="w-10 h-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center transition-all hover:bg-blue-500 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                        <button class="w-10 h-10 rounded-xl bg-red-50 text-red-500 flex items-center justify-center transition-all hover:bg-red-500 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></button>
                     </div>
                 </div>
-                <div class="flex gap-2">
-                    <button class="p-2 text-blue-500 bg-blue-50 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
-                    <button class="p-2 text-red-500 bg-red-50 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></button>
+            </div>
+        </div>
+
+        <!-- PLANS TAB -->
+        <div id="content-plans" class="tab-content space-y-6">
+            <div class="flex items-center justify-between">
+                <h2 class="text-2xl font-black text-gray-900 tracking-tight">Active Plans</h2>
+                <button onclick="openAddPlan()" class="bg-gray-900 text-white px-5 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 active:scale-95 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                    Add Plan
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="plans-container">
+                <!-- Example Plan -->
+                <div class="bg-white p-5 rounded-[30px] border border-gray-100 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center text-[#ff0000] font-black text-xl">1</div>
+                            <div>
+                                <h4 class="text-sm font-black text-gray-800 leading-none">VIP Starter</h4>
+                                <p class="text-[10px] font-bold text-gray-400 mt-1 uppercase">35 Day Plan</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[9px] text-gray-300 font-black uppercase">Price</p>
+                            <p class="text-lg font-black text-[#ff0000]">₹520</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="flex-1 bg-gray-50 text-gray-600 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-gray-100">Edit</button>
+                        <button class="w-12 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center border border-red-50"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COUPONS TAB -->
+        <div id="content-coupons" class="tab-content space-y-6">
+            <div class="bg-white p-6 rounded-[35px] border border-gray-100 shadow-sm space-y-6">
+                <h2 class="text-xl font-black text-gray-800">Generate Coupon</h2>
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-gray-400 uppercase">Coupon Code</label>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="GROWVIX50" class="flex-1 bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 outline-none font-bold text-gray-700">
+                            <button class="bg-blue-500 text-white px-6 rounded-2xl font-black text-[10px] uppercase">Rnd</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-gray-400 uppercase">Amount (₹)</label>
+                            <input type="number" value="50" class="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 outline-none font-bold text-gray-700">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black text-gray-400 uppercase">Limit</label>
+                            <input type="number" value="100" class="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 outline-none font-bold text-gray-700">
+                        </div>
+                    </div>
+                    <button class="w-full bg-gray-900 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-widest active:scale-95 transition-all">GENERATE & ADD</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div id="content-settings" class="tab-content space-y-8">
+            <!-- UPI Settings -->
+            <div class="bg-white p-6 rounded-[35px] border border-gray-100 shadow-sm space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                    </div>
+                    <h3 class="text-xl font-black text-gray-800 tracking-tight leading-none">Gateway Config</h3>
+                </div>
+
+                <div class="space-y-5">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Admin UPI ID</label>
+                        <input type="text" value="growvix@ybl" class="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 outline-none font-bold text-gray-700 focus:border-blue-500 transition-all">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Daily Bonus Amount</label>
+                        <input type="number" value="10" class="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 outline-none font-bold text-gray-700 focus:border-blue-500 transition-all">
+                    </div>
+                    <button class="w-full bg-[#ff0000] text-white py-4 rounded-2xl font-black text-xs uppercase tracking-[2px] shadow-xl shadow-red-200 active:scale-[0.98] transition-all">SAVE CONFIGURATION</button>
+                </div>
+            </div>
+
+            <!-- App Settings -->
+            <div class="bg-white p-6 rounded-[35px] border border-gray-100 shadow-sm space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>
+                    </div>
+                    <h3 class="text-xl font-black text-gray-800 tracking-tight leading-none">Application</h3>
+                </div>
+
+                <div class="space-y-5">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Telegram Group Link</label>
+                        <input type="text" value="https://t.me/growvix" class="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 outline-none font-bold text-gray-700 transition-all">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">App Download URL</label>
+                        <input type="text" value="https://growvix.app/download" class="w-full bg-gray-50 border border-gray-100 rounded-2xl py-4 px-6 outline-none font-bold text-gray-700 transition-all">
+                    </div>
+                    <button class="w-full bg-gray-900 text-white py-4 rounded-2xl font-black text-xs uppercase tracking-[2px] active:scale-[0.98] transition-all">UPDATE APP INFO</button>
                 </div>
             </div>
         </div>
 
     </main>
 
+    <!-- Logout Modal -->
+    <div id="logout-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+        <div class="bg-white w-full max-w-sm rounded-[40px] p-8 space-y-6 text-center shadow-2xl">
+            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center text-[#ff0000] mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-2xl font-black text-gray-800 tracking-tight">Standard Logout</h3>
+                <p class="text-sm font-medium text-gray-400">Are you sure you want to end your administration session?</p>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="closeModal('logout-modal')" class="flex-1 py-4 rounded-3xl text-sm font-black text-gray-400 bg-gray-100 hover:bg-gray-200 transition-colors">CANCEL</button>
+                <a href="index.html" class="flex-1 py-4 rounded-3xl text-sm font-black text-white bg-[#ff0000] shadow-lg shadow-red-200 hover:scale-[1.02] transition-all text-center">EXIT</a>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('admin-menu');
-            menu.classList.toggle('hidden');
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // Reset all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active-tab');
+                btn.classList.add('bg-white', 'text-gray-500');
+            });
+            
+            // Show active content
+            document.getElementById('content-' + tabId).classList.add('active');
+            // Set active button
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.add('active-tab');
+            activeBtn.classList.remove('bg-white', 'text-gray-500');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function switchTab(tabId) {
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            toggleMenu();
+        function logout() {
+            document.getElementById('logout-modal').classList.remove('hidden');
         }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function openAddPlan() {
+            // Redirect to dedicated add plan page or open modal
+            window.location.href = 'admin-add-plan.html';
+        }
+
+        // Auto-refresh stats (simulation)
+        setInterval(() => {
+            const users = document.getElementById('stat-total-users');
+            const current = parseInt(users.textContent);
+            if (Math.random() > 0.8) {
+               users.textContent = current + 1;
+            }
+        }, 10000);
     </script>
 </body>
 </html>

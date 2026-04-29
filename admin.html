@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growvix - Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f9fafb; padding-bottom: 40px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="max-w-4xl mx-auto text-gray-900">
+
+    <header class="p-6 flex items-center justify-between sticky top-0 bg-white/80 backdrop-blur-md z-40 border-b border-gray-100">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-100">
+                <img src="https://i.ibb.co/CcxW3F4/file-0000000054487208abbf2cb1db170f4e.png" alt="Logo" class="w-full h-full object-cover">
+            </div>
+            <div>
+                <h1 class="text-xl font-black text-gray-800 tracking-tight">Admin</h1>
+                <p class="text-[8px] text-gray-400 font-bold uppercase tracking-widest">Growvix Management</p>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-2">
+            <a href="index.html" class="p-2.5 bg-white rounded-xl text-gray-400 hover:text-[#ff0000] shadow-sm border border-gray-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </a>
+            <div class="relative">
+                <button onclick="toggleMenu()" class="p-2.5 bg-white rounded-xl text-gray-400 shadow-sm border border-gray-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                </button>
+                <div id="admin-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-2xl border border-gray-100 z-50 overflow-hidden">
+                    <div class="p-2 space-y-1">
+                        <button onclick="switchTab('overview')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-50">Overview</button>
+                        <button onclick="switchTab('requests')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-50">Requests</button>
+                        <button onclick="switchTab('users')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-50">Users</button>
+                        <button onclick="switchTab('settings')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-50">Settings</button>
+                        <a href="admin-add-plan.html" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-50">Add Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="p-4 space-y-6">
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active space-y-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-[25px] shadow-sm border border-gray-50 flex flex-col items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <p class="text-lg font-black text-gray-800">1,248</p>
+                    <p class="text-[10px] text-gray-400 font-bold uppercase">Total Users</p>
+                </div>
+                <div class="bg-white p-4 rounded-[25px] shadow-sm border border-gray-50 flex flex-col items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-500"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    <p class="text-lg font-black text-gray-800">15</p>
+                    <p class="text-[10px] text-gray-400 font-bold uppercase">Pending Req.</p>
+                </div>
+                <!-- ... more cards ... -->
+            </div>
+            
+            <div class="bg-white p-6 rounded-[30px] shadow-sm border border-gray-50 space-y-4">
+                <h3 class="text-sm font-black text-gray-800 uppercase tracking-widest">System Status</h3>
+                <div class="p-4 bg-green-50 text-green-700 rounded-2xl border border-green-100 flex items-center gap-3">
+                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <p class="text-xs font-bold uppercase">Server Online</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requests Tab -->
+        <div id="requests" class="tab-content space-y-4">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-black text-gray-800">Pending Requests</h2>
+                <div class="flex bg-gray-100 p-1 rounded-lg">
+                    <button class="px-3 py-1.5 text-[10px] font-black uppercase tracking-wider rounded-md bg-white text-green-600 shadow-sm">Recharges</button>
+                    <button class="px-3 py-1.5 text-[10px] font-black uppercase tracking-wider rounded-md text-gray-400">Withdraws</button>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white p-4 rounded-2xl border border-gray-100 space-y-4 shadow-sm">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-green-50 text-green-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/><circle cx="12" cy="12" r="10"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-800">₹2,000.00</p>
+                                <p class="text-[10px] text-gray-400 font-medium">987****210</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] text-gray-400 font-bold uppercase">UPI</p>
+                            <p class="text-[10px] font-bold text-red-500">UTR: 382910482910</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 pt-2">
+                        <button class="flex-1 bg-green-500 text-white py-2 rounded-xl text-xs font-bold">Approve</button>
+                        <button class="flex-1 bg-red-500 text-white py-2 rounded-xl text-xs font-bold">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Tab -->
+        <div id="users" class="tab-content space-y-4">
+             <div class="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" placeholder="Search by phone..." class="w-full bg-white border border-gray-100 rounded-2xl py-3 pl-12 pr-4 outline-none font-bold text-gray-700">
+            </div>
+            <!-- ... list of users ... -->
+            <div class="bg-white p-4 rounded-2xl border border-gray-100 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin" class="w-10 h-10 rounded-full bg-gray-50">
+                    <div>
+                        <p class="text-sm font-black">9876543210</p>
+                        <p class="text-[10px] text-gray-400">admin@growvix.com</p>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button class="p-2 text-blue-500 bg-blue-50 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
+                    <button class="p-2 text-red-500 bg-red-50 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('admin-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function switchTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            toggleMenu();
+        }
+    </script>
+</body>
+</html>

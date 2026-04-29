@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growvix - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #ffffff; }
+    </style>
+</head>
+<body class="max-w-md mx-auto">
+
+    <div class="min-h-screen flex flex-col p-6 relative overflow-hidden">
+        
+        <!-- Background Logo Decoration -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-center">
+            <img src="https://i.ibb.co/CcxW3F4/file-0000000054487208abbf2cb1db170f4e.png" alt="Background Logo" class="w-full scale-150 rotate-12">
+        </div>
+
+        <div class="flex-1 flex flex-col justify-center space-y-10 relative z-10">
+            
+            <!-- Branding -->
+            <div class="flex flex-col items-center gap-4 text-center">
+                <img src="https://i.ibb.co/CcxW3F4/file-0000000054487208abbf2cb1db170f4e.png" alt="Growvix Logo" class="w-32 h-32 object-cover rounded-full border-4 border-red-50 shadow-xl">
+                <div>
+                    <h1 class="text-3xl font-black text-gray-800 tracking-tight">Growvix</h1>
+                    <p class="text-sm text-gray-400 font-medium mt-1">Grow your wealth with us</p>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <form action="index.html" method="GET" class="space-y-6">
+                <div class="space-y-4">
+                    <div class="relative group">
+                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#ff0000] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </div>
+                        <input type="email" placeholder="Email Address" required class="w-full bg-gray-50 border-2 border-transparent focus:border-[#ff0000] focus:bg-white rounded-[20px] py-4 pl-12 pr-4 outline-none transition-all font-bold text-gray-700">
+                    </div>
+
+                    <div class="relative group">
+                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#ff0000] transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                        <input type="password" id="password" placeholder="Password" required class="w-full bg-gray-50 border-2 border-transparent focus:border-[#ff0000] focus:bg-white rounded-[20px] py-4 pl-12 pr-12 outline-none transition-all font-bold text-gray-700">
+                        <button type="button" onclick="togglePassword()" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                            <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between px-2">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="checkbox" class="w-4 h-4 accent-[#ff0000] rounded">
+                        <span class="text-xs text-gray-500 font-bold group-hover:text-gray-700 transition-colors">Remember me</span>
+                    </label>
+                    <a href="forgot-password.html" class="text-xs text-[#ff0000] font-bold hover:underline">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-[#ff0000] to-[#cc0000] text-white py-4 rounded-[20px] font-black text-lg shadow-xl shadow-red-200 active:scale-95 transition-transform flex items-center justify-center gap-2">
+                    Sign In
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </button>
+            </form>
+
+            <div class="text-center">
+                <p class="text-sm text-gray-500 font-medium">
+                    Don't have an account? <a href="register.html" class="text-[#ff0000] font-black hover:underline">Create Account</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const input = document.getElementById('password');
+            const icon = document.getElementById('eye-icon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.innerHTML = '<path d="M9.88 9.88 2 2"/><path d="M17.36 15.58a8.87 8.87 0 0 1-12.74 0"/><path d="m2 2 20 20"/><path d="M21.22 17.65a8.8 8.8 0 0 0-1.25-1.57"/><path d="M18 10a10.99 10.99 0 0 0-5.88-2.79"/><path d="M2 12s3-7 10-7a9.38 9.38 0 0 1 5.3 1.58"/><path d="M12 15a3 3 0 0 1-2.82-2.12"/><path d="M15 15a3 3 0 0 1-1.33-2.67"/>';
+            } else {
+                input.type = 'password';
+                icon.innerHTML = '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>';
+            }
+        }
+    </script>
+</body>
+</html>

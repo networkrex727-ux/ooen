@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growvix - Checkout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f3f4f6; }
+    </style>
+</head>
+<body class="max-w-[420px] mx-auto p-[15px]">
+
+    <div class="bg-gradient-to-br from-[#4f46e5] to-[#10b981] text-white p-[15px] text-center rounded-t-[12px]">
+        <h1 class="text-xl font-bold">Ola Gateway</h1>
+        <div class="mt-[5px] bg-white/10 px-[10px] py-[5px] rounded-[8px] inline-flex items-center gap-2 font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span id="timer">05:00</span>
+        </div>
+    </div>
+
+    <div class="bg-white p-[25px] shadow-lg rounded-b-[12px] space-y-6 text-gray-900">
+        <div class="text-center">
+            <p class="text-[#6b7280] font-semibold text-xs uppercase tracking-wider">Payment Amount</p>
+            <h2 class="text-[2.8em] font-bold" id="display-amount">₹500</h2>
+        </div>
+
+        <div class="flex justify-center">
+            <div class="p-2 bg-white border-[5px] border-white shadow-md rounded-[10px]">
+                <img id="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=growvix@upi&pn=Merchant&am=500&cu=INR" alt="QR" class="w-[200px] h-[200px]">
+            </div>
+        </div>
+
+        <div class="flex items-center bg-[#eef2ff] border border-dashed border-[#4f46e5] p-[10px] rounded-[8px] gap-2">
+            <span class="flex-1 font-semibold text-[#4f46e5] truncate">growvix@upi</span>
+            <button onclick="copyUpi()" class="bg-[#4f46e5] text-white px-3 py-1.5 rounded-[6px] text-xs font-bold active:scale-95 transition-transform uppercase">Copy</button>
+        </div>
+
+        <div class="space-y-2 text-gray-600 font-semibold">
+            <p class="text-xs">1. Pay the amount via UPI apps</p>
+            <p class="text-xs">2. Copy the 12-digit UTR/Ref No. from the app</p>
+            <p class="text-xs">3. Submit it below to confirm</p>
+        </div>
+
+        <div class="space-y-2">
+            <label class="text-sm font-semibold text-gray-600 uppercase tracking-tight">Enter 12-digit UTR/Ref. No.</label>
+            <input type="text" id="utr-input" placeholder="e.g. 382910482910" maxlength="12" class="w-full p-3 border-2 border-gray-200 rounded-[8px] text-lg text-center font-bold outline-none focus:border-[#4f46e5] transition-all">
+        </div>
+
+        <button onclick="submitUtr()" class="w-full p-4 bg-gradient-to-br from-[#10b981] to-[#15803d] text-white rounded-[8px] text-lg font-bold shadow-lg active:scale-95 transition-transform uppercase tracking-widest">
+            Submit UTR
+        </button>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get('amount') || '500';
+        document.getElementById('display-amount').innerText = '₹' + amount;
+        
+        function copyUpi() {
+            navigator.clipboard.writeText("growvix@upi");
+            alert("UPI ID Copied!");
+        }
+
+        function submitUtr() {
+            const utr = document.getElementById('utr-input').value;
+            if (utr.length !== 12) {
+                alert("Please enter a valid 12-digit UTR number");
+                return;
+            }
+            alert("Payment successful! Redirecting to home...");
+            window.location.href = "index.html";
+        }
+
+        // Simple timer logic
+        let timeLeft = 300;
+        setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                const min = Math.floor(timeLeft / 60);
+                const sec = timeLeft % 60;
+                document.getElementById('timer').innerText = `${min}:${sec < 10 ? '0' : ''}${sec}`;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

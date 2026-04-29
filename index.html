@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growvix - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f9fafb; padding-bottom: 80px; }
+        .bg-red-gradient { background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%); }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+</head>
+<body class="max-w-md mx-auto">
+
+    <!-- Header -->
+    <header class="p-4 flex items-center justify-between bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="flex items-center gap-2">
+            <img src="https://i.ibb.co/CcxW3F4/file-0000000054487208abbf2cb1db170f4e.png" alt="Logo" class="w-10 h-10 rounded-full border border-gray-100">
+            <h1 class="text-xl font-bold text-gray-800 tracking-tight">Growvix</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="notifications.html" class="relative p-2 bg-gray-50 rounded-xl text-gray-400 hover:text-[#ff0000] transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                <span class="absolute top-1 right-1 w-4 h-4 bg-[#ff0000] text-white text-[10px] font-black flex items-center justify-center rounded-full border-2 border-white">2</span>
+            </a>
+            <div class="text-sm text-gray-500 font-medium hidden sm:block">ID: 987***210</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-4 space-y-6">
+        
+        <!-- Balance Card -->
+        <div class="bg-red-gradient rounded-[30px] p-8 text-white shadow-lg relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-black/10 rounded-full blur-3xl"></div>
+            
+            <div class="relative z-10">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <p class="text-white/80 text-[10px] font-black uppercase tracking-[0.2em]">Real Balance</p>
+                            <div class="w-1.5 h-1.5 bg-green-400 rounded-full shadow-[0_0_8px_rgba(74,222,128,0.8)]"></div>
+                        </div>
+                        <h2 class="text-2xl font-black mt-2 drop-shadow-md">₹5,240.50</h2>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-white/80 text-[10px] font-black uppercase tracking-[0.2em]">Withdrawable</p>
+                        <p class="text-lg font-black mt-1">₹1,420.00</p>
+                    </div>
+                </div>
+                
+                <div class="mt-4 flex items-center gap-2">
+                    <div class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+                        <p class="text-white/90 text-[9px] font-black uppercase tracking-wider flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+                            Deposit: ₹3,820.50
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex gap-4">
+                    <a href="recharge.html" class="flex-1 bg-white text-[#ff0000] py-4 rounded-2xl font-black text-sm shadow-md text-center active:scale-95 transition-transform">Recharge</a>
+                    <a href="withdraw.html" class="flex-1 bg-black/20 backdrop-blur-md text-white py-4 rounded-2xl font-black text-sm shadow-md border border-white/20 text-center active:scale-95 transition-transform">Withdraw</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mini Actions -->
+        <div class="grid grid-cols-4 gap-4">
+            <a href="recharge.html" class="flex flex-col items-center gap-2 group">
+                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm active:scale-90 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg>
+                </div>
+                <span class="text-xs font-semibold text-gray-600">Recharge</span>
+            </a>
+            <a href="withdraw.html" class="flex flex-col items-center gap-2 group">
+                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm active:scale-90 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="m8 12 4 4 4-4"/></svg>
+                </div>
+                <span class="text-xs font-semibold text-gray-600">Withdraw</span>
+            </a>
+            <a href="team.html" class="flex flex-col items-center gap-2 group">
+                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm active:scale-90 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-500"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <span class="text-xs font-semibold text-gray-600">Invite</span>
+            </a>
+            <a href="support.html" class="flex flex-col items-center gap-2 group">
+                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm active:scale-90 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg>
+                </div>
+                <span class="text-xs font-semibold text-gray-600">Support</span>
+            </a>
+        </div>
+
+        <!-- Banner -->
+        <div class="relative h-32 rounded-[20px] overflow-hidden shadow-md">
+            <img src="https://picsum.photos/seed/investment/800/400" alt="Banner" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent flex items-center p-6">
+                <div class="text-white">
+                    <h3 class="font-bold text-lg">New VIP Plans</h3>
+                    <p class="text-xs text-white/80">Earn up to 20% daily income</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Ticker -->
+        <div class="bg-white rounded-xl p-3 flex items-center gap-3 shadow-sm border border-gray-50">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#ff0000]"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg>
+            <div class="flex-1 overflow-hidden h-6 relative">
+                <div id="news-ticker" class="text-sm font-medium text-gray-700">
+                    User J*** just withdrew ₹2500
+                </div>
+            </div>
+        </div>
+
+        <!-- Income Stats -->
+        <div class="grid grid-cols-1 gap-4">
+            <div class="bg-white rounded-[20px] p-4 shadow-sm border border-gray-50 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#ff0000]"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 font-medium">Today's Income</p>
+                        <p class="text-lg font-bold text-gray-800">₹240.00</p>
+                    </div>
+                </div>
+                <a href="check-in.html" class="bg-[#ff0000] text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md active:scale-95 transition-transform">Check-in</a>
+            </div>
+            
+            <div class="bg-white rounded-[20px] p-4 shadow-sm border border-gray-50 flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 font-medium">Total Income</p>
+                    <p class="text-lg font-bold text-gray-800">₹14,850.00</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Big Actions -->
+        <div class="grid grid-cols-2 gap-4">
+            <a href="team.html" class="bg-white p-4 rounded-[20px] shadow-sm border border-gray-50 flex flex-col items-center gap-2 active:scale-95 transition-transform">
+                <div class="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-500"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <span class="text-xs font-bold text-gray-700">Promotions</span>
+            </a>
+            <a href="history.html" class="bg-white p-4 rounded-[20px] shadow-sm border border-gray-50 flex flex-col items-center gap-2 active:scale-95 transition-transform">
+                <div class="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+                </div>
+                <span class="text-xs font-bold text-gray-700">History</span>
+            </a>
+        </div> at:
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-100 pb-safe shadow-[0_-1px_10px_rgba(0,0,0,0.05)] max-w-md mx-auto">
+        <div class="flex items-center justify-around h-16">
+            <a href="index.html" class="flex flex-col items-center justify-center gap-1 flex-1 h-full text-[#ff0000]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="text-[10px] font-bold uppercase tracking-tight">Home</span>
+            </a>
+            <a href="product.html" class="flex flex-col items-center justify-center gap-1 flex-1 h-full text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg>
+                <span class="text-[10px] font-bold uppercase tracking-tight">Product</span>
+            </a>
+            <a href="team.html" class="flex flex-col items-center justify-center gap-1 flex-1 h-full text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span class="text-[10px] font-bold uppercase tracking-tight">Team</span>
+            </a>
+            <a href="profile.html" class="flex flex-col items-center justify-center gap-1 flex-1 h-full text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span class="text-[10px] font-bold uppercase tracking-tight">Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Simple ticker logic
+        const news = [
+            "User A*** just withdrew ₹500",
+            "User S*** just withdrew ₹1000",
+            "User M*** just withdrew ₹2500",
+            "User D*** just withdrew ₹5000"
+        ];
+        let newsIndex = 0;
+        setInterval(() => {
+            newsIndex = (newsIndex + 1) % news.length;
+            document.getElementById('news-ticker').innerText = news[newsIndex];
+        }, 5000);
+    </script>
+</body>
+</html>

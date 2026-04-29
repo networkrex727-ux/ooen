@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growvix - Withdraw</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f9fafb; padding-bottom: 40px; }
+    </style>
+</head>
+<body class="max-w-md mx-auto text-gray-900">
+
+    <main class="p-4 space-y-6">
+        
+        <header class="flex items-center gap-4 pt-2">
+            <a href="profile.html" class="p-2 bg-white rounded-xl text-gray-400 hover:text-[#ff0000] transition-colors shadow-sm border border-gray-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            </a>
+            <h1 class="text-2xl font-black text-gray-800 tracking-tight">Withdraw</h1>
+        </header>
+
+        <div class="bg-white rounded-[25px] p-6 shadow-sm border border-gray-50 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#ff0000]"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 font-medium">Withdrawable Balance</p>
+                    <p class="text-2xl font-black text-gray-800">₹1,420.00</p>
+                </div>
+            </div>
+        </div>
+
+        <form onsubmit="event.preventDefault(); alert('Withdrawal request submitted!'); window.location.href='index.html';" class="space-y-6">
+            <div class="bg-white rounded-[25px] p-6 shadow-sm border border-gray-50 space-y-6">
+                <div class="space-y-2">
+                    <p class="text-sm font-bold text-gray-700">Withdraw Amount</p>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">₹</span>
+                        <input type="number" placeholder="Enter amount" required class="w-full bg-gray-50 border-2 border-transparent focus:border-[#ff0000] rounded-xl py-4 pl-8 pr-4 outline-none transition-all font-bold text-gray-700 font-mono">
+                    </div>
+                    <p class="text-[10px] text-gray-400 font-medium px-2">Min: ₹200 | Max: ₹50,000</p>
+                </div>
+
+                <div class="space-y-4">
+                    <p class="text-sm font-bold text-gray-700">Bank Details</p>
+                    <div class="space-y-3">
+                        <input type="text" placeholder="Account Holder Name" required class="w-full bg-gray-50 border-2 border-transparent focus:border-[#ff0000] rounded-xl py-3 px-4 outline-none transition-all font-bold text-gray-700 text-sm">
+                        <input type="text" placeholder="Account Number" required class="w-full bg-gray-50 border-2 border-transparent focus:border-[#ff0000] rounded-xl py-3 px-4 outline-none transition-all font-bold text-gray-700 text-sm">
+                        <input type="text" placeholder="IFSC Code" required class="w-full bg-gray-50 border-2 border-transparent focus:border-[#ff0000] rounded-xl py-3 px-4 outline-none transition-all font-bold text-gray-700 text-sm uppercase">
+                        <input type="text" placeholder="UPI ID (Optional)" class="w-full bg-gray-50 border-2 border-transparent focus:border-[#ff0000] rounded-xl py-3 px-4 outline-none transition-all font-bold text-gray-700 text-sm">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded-2xl flex gap-3 border border-blue-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500 shrink-0"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                <p class="text-[10px] text-blue-700 font-medium leading-relaxed">Withdrawals are processed within 24 hours. A 5% service fee will be deducted from the withdrawal amount.</p>
+            </div>
+
+            <button type="submit" class="w-full bg-gradient-to-r from-[#ff0000] to-[#cc0000] text-white py-5 rounded-[20px] font-black text-lg shadow-xl shadow-red-200 active:scale-95 transition-transform">
+                Submit Withdrawal
+            </button>
+        </form>
+
+    </main>
+</body>
+</html>

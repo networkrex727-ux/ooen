@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growvix - Recharge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f9fafb; }
+    </style>
+</head>
+<body class="max-w-md mx-auto text-gray-900">
+
+    <main class="p-4 space-y-6">
+        
+        <header class="flex items-center gap-4 pt-2">
+            <a href="index.html" class="p-2 bg-white rounded-xl text-gray-400 hover:text-[#ff0000] transition-colors shadow-sm border border-gray-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+            </a>
+            <h1 class="text-2xl font-black text-gray-800 tracking-tight">Recharge</h1>
+        </header>
+
+        <div class="bg-white rounded-[25px] p-6 shadow-sm border border-gray-50 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#ff0000]"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 font-medium">Current Balance</p>
+                    <p class="text-2xl font-black text-gray-800">₹5,240.50</p>
+                </div>
+            </div>
+        </div>
+
+        <form action="checkout.html" method="GET" class="space-y-6">
+            <div class="bg-white rounded-[25px] p-6 shadow-sm border border-gray-50 space-y-6">
+                <div class="space-y-4">
+                    <p class="text-sm font-bold text-gray-700">Select Amount</p>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button type="button" onclick="setAmount(500)" class="amt-btn py-3 rounded-xl font-bold text-sm transition-all border-2 bg-gray-50 border-transparent text-gray-500 hover:bg-gray-100">₹500</button>
+                        <button type="button" onclick="setAmount(1000)" class="amt-btn py-3 rounded-xl font-bold text-sm transition-all border-2 bg-gray-50 border-transparent text-gray-500 hover:bg-gray-100">₹1000</button>
+                        <button type="button" onclick="setAmount(2000)" class="amt-btn py-3 rounded-xl font-bold text-sm transition-all border-2 bg-gray-50 border-transparent text-gray-500 hover:bg-gray-100">₹2000</button>
+                        <button type="button" onclick="setAmount(5000)" class="amt-btn py-3 rounded-xl font-bold text-sm transition-all border-2 bg-gray-50 border-transparent text-gray-500 hover:bg-gray-100">₹5000</button>
+                        <button type="button" onclick="setAmount(10000)" class="amt-btn py-3 rounded-xl font-bold text-sm transition-all border-2 bg-gray-50 border-transparent text-gray-500 hover:bg-gray-100">₹10k</button>
+                        <button type="button" onclick="setAmount(20000)" class="amt-btn py-3 rounded-xl font-bold text-sm transition-all border-2 bg-gray-50 border-transparent text-gray-500 hover:bg-gray-100">₹20k</button>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <p class="text-sm font-bold text-gray-700">Custom Amount</p>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">₹</span>
+                        <input type="number" name="amount" id="amount-input" placeholder="Enter amount" required class="w-full bg-gray-50 border-2 border-transparent focus:border-[#ff0000] focus:bg-white rounded-xl py-4 pl-8 pr-4 outline-none transition-all font-bold text-gray-700 font-mono">
+                    </div>
+                    <p class="text-[10px] text-gray-400 font-medium px-2">Min: ₹100 | Max: ₹50,000</p>
+                </div>
+            </div>
+
+            <div class="bg-orange-50 p-4 rounded-2xl flex gap-3 border border-orange-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-500 shrink-0"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                <p class="text-[10px] text-orange-700 font-medium leading-relaxed">Please make sure to transfer the exact amount. After payment, it may take 10-30 minutes for the balance to reflect in your account.</p>
+            </div>
+
+            <button type="submit" class="w-full bg-gradient-to-r from-[#ff0000] to-[#cc0000] text-white py-5 rounded-[20px] font-black text-lg shadow-xl shadow-red-200 active:scale-95 transition-transform">
+                Recharge Now
+            </button>
+        </form>
+
+    </main>
+
+    <script>
+        function setAmount(val) {
+            document.getElementById('amount-input').value = val;
+            const buttons = document.querySelectorAll('.amt-btn');
+            buttons.forEach(btn => {
+                if (btn.innerText === '₹' + val || (val >= 1000 && btn.innerText === '₹' + (val/1000) + 'k')) {
+                    btn.classList.add('bg-red-50', 'border-[#ff0000]', 'text-[#ff0000]');
+                    btn.classList.remove('bg-gray-50', 'border-transparent', 'text-gray-500');
+                } else {
+                    btn.classList.remove('bg-red-50', 'border-[#ff0000]', 'text-[#ff0000]');
+                    btn.classList.add('bg-gray-50', 'border-transparent', 'text-gray-500');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
